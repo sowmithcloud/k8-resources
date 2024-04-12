@@ -1,0 +1,32 @@
+apiVersion:
+kind: Deployment
+metadata:
+  name: config-deploy
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-pod
+  template:
+    metadata:
+      labels:
+        app: nginx-pod
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        env:
+        - name: project
+          valueFrom:
+            configMapKeyRef:
+              name: sample-config
+              key: company
+        - name: person
+          valueFrom:
+            configMapKeyRef:
+              name: sample-config
+              key: owner
+        ports:
+        - containerPort: 80
