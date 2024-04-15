@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-dynamic-pvc
+spec:
+  storageClassName: efs-dynamic-sc
+  resources:
+    requests:
+      storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+    demo: deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      demo: deployment
+  template:
+    metadata:
+      labels:
+        app: nginx
+        demo: deployment
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-data
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: nginx-data
+        persistentVolumeClaim:
+          claimName: efs-dynamic-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  type: LoadBalancer
+  selector:
+    demo: app-pod
+  ports:
+    - protocol: TCP
+      port: 80 #service-port
+      targetPort: 80 #container-port
