@@ -37,9 +37,9 @@ spec:
 apiVersion: apps/v1
 kind: Service
 metadata:
-  name: nginx-svcname
+  name: nginx
   labels:
-    app: nginx
+    app: nginx-svcname
 spec:
   ports:
   - port: 80
