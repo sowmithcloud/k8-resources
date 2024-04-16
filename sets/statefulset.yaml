@@ -5,14 +5,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx-pod 
-  serviceName: "nginx-svc"
+      app: nginx # has to match .spec.template.metadata.labels
+  serviceName: "nginx"
   replicas: 3 # by default is 1
   minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
-        app: nginx-pod
+        app: nginx # has to match .spec.selector.matchLabels
     spec:
       terminationGracePeriodSeconds: 10
       containers:
@@ -22,7 +22,7 @@ spec:
         - containerPort: 80
           name: web
         volumeMounts:
-        - name: nginx-data
+        - name: www
           mountPath: /usr/share/nginx/html
   volumeClaimTemplates:
   - metadata:
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-svc
+  name: nginx
   labels:
     app: nginx
 spec:
