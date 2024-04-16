@@ -9,12 +9,12 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-app
       demo: deployment
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-app
         demo: deployment
     spec:
       containers:
