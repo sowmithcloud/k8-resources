@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: nginx-pod 
-  serviceName: "nginx-svcname"
+  serviceName: "nginx"
   replicas: 3 # by default is 1
   minReadySeconds: 10 # by default is 0
   template:
