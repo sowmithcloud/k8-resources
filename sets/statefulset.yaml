@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx 
+      app: nginx-pod 
   serviceName: "nginx-svcname"
   replicas: 3 # by default is 1
   minReadySeconds: 10 # by default is 0
