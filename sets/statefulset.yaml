@@ -33,9 +33,7 @@ spec:
       resources:
         requests:
           storage: 1Gi
-
 ---
-
 apiVersion: apps/v1
 kind: Service
 metadata:
