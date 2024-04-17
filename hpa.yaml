@@ -39,7 +39,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: nginx
+    app: nginx-app
     demo: deployment
   ports:
   - protocol: TCP
