@@ -4,8 +4,6 @@ metadata:
   name: hello-pod
   # namespace: roboshop
 spec:
-  replicas:
-  # list of containers
   containers:
   - name: hello-pod
     image: nginx
