@@ -27,6 +27,7 @@ spec:
             operator: In
             values:
             - hello-pod-affinity
+        topologyKey: topology.kubernetes.io/zone
   containers:
   - name: hello-pod
     image: nginx
