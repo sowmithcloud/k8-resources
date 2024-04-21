@@ -9,7 +9,7 @@ spec:
         nodeSelectorTerms:
           - matchExpressions:
             - key: project
-              operator: In
+              operator: NotIn
               values:
               - roboshop
   containers:
