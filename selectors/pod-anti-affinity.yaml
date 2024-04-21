@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deploy
+  name: redis-deploy
   labels:
-    name: nginx-deploy-1
+    name: redis-deploy-1
 spec:
   selector:
     matchLabels:
-      app: nginx-pods
+      app: redis-pods
   replicas: 2
   template:
     metadata:
       labels:
-        app: nginx-pods
+        app: redis-pods
     spec:
       affinity:
         podAntiAffinity:
@@ -22,7 +22,7 @@ spec:
               - key: app
                 operator: In
                 values:
-                - nginx-pods
+                - redis-pods
             topologyKey: "kubernetes.io/hostname"
       containers:
       - name: redis-server
