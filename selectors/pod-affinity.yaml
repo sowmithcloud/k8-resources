@@ -27,3 +27,9 @@ spec:
             operator: In
             values:
             - hello-pod-affinity
+  containers:
+  - name: hello-pod
+    image: nginx
+    #here with this line port will not be opened, just for information
+    ports:
+    - containerPort: 80
